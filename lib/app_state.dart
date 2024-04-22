@@ -30,17 +30,6 @@ class FFAppState extends ChangeNotifier {
           _bills;
     });
     _safeInit(() {
-      _companies = prefs.getStringList('ff_companies')?.map((x) {
-            try {
-              return jsonDecode(x);
-            } catch (e) {
-              print("Can't decode persisted json. Error: $e.");
-              return {};
-            }
-          }).toList() ??
-          _companies;
-    });
-    _safeInit(() {
       _filteredCompanies =
           prefs.getStringList('ff_filteredCompanies')?.map((x) {
                 try {
@@ -112,53 +101,6 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInBills(int index, dynamic value) {
     _bills.insert(index, value);
     prefs.setStringList('ff_bills', _bills.map((x) => jsonEncode(x)).toList());
-  }
-
-  List<dynamic> _companies = [];
-  List<dynamic> get companies => _companies;
-  set companies(List<dynamic> value) {
-    _companies = value;
-    prefs.setStringList(
-        'ff_companies', value.map((x) => jsonEncode(x)).toList());
-  }
-
-  void addToCompanies(dynamic value) {
-    _companies.add(value);
-    prefs.setStringList(
-        'ff_companies', _companies.map((x) => jsonEncode(x)).toList());
-  }
-
-  void removeFromCompanies(dynamic value) {
-    _companies.remove(value);
-    prefs.setStringList(
-        'ff_companies', _companies.map((x) => jsonEncode(x)).toList());
-  }
-
-  void removeAtIndexFromCompanies(int index) {
-    _companies.removeAt(index);
-    prefs.setStringList(
-        'ff_companies', _companies.map((x) => jsonEncode(x)).toList());
-  }
-
-  void updateCompaniesAtIndex(
-    int index,
-    dynamic Function(dynamic) updateFn,
-  ) {
-    _companies[index] = updateFn(_companies[index]);
-    prefs.setStringList(
-        'ff_companies', _companies.map((x) => jsonEncode(x)).toList());
-  }
-
-  void insertAtIndexInCompanies(int index, dynamic value) {
-    _companies.insert(index, value);
-    prefs.setStringList(
-        'ff_companies', _companies.map((x) => jsonEncode(x)).toList());
-  }
-
-  bool _isCompanyFiltered = false;
-  bool get isCompanyFiltered => _isCompanyFiltered;
-  set isCompanyFiltered(bool value) {
-    _isCompanyFiltered = value;
   }
 
   List<dynamic> _filteredCompanies = [];

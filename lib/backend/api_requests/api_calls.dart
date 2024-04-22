@@ -6,120 +6,6 @@ export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
-class GetBillsListCall {
-  static Future<ApiCallResponse> call({
-    String? token = '\'\'',
-    String? company = '',
-    String? transactionId = '',
-    String? date = '',
-    String? receiptNumber = '',
-    String? isMarked = '',
-    String? status = '',
-    String? companyId = '',
-    String? check = '',
-  }) async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'getBillsList',
-      apiUrl:
-          'https://us-central1-development-417611.cloudfunctions.net/app/gamification-bill/filtered',
-      callType: ApiCallType.GET,
-      headers: {
-        'Authorization': 'Bearer $token',
-      },
-      params: {
-        'company': company,
-        'transactionId': transactionId,
-        'date': date,
-        'receiptNumber': receiptNumber,
-        'isMarked': isMarked,
-        'status': status,
-        'companyId': companyId,
-        'check': check,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
-class GetBillsListFilteredCall {
-  static Future<ApiCallResponse> call({
-    String? token = '\'\'',
-    String? company = '',
-    String? transactionId = '',
-    String? date = '',
-    String? receiptNumber = '',
-    String? isMarked = '',
-    String? status = '',
-    String? companyId = '',
-    String? startDate = '',
-    String? endDate = '',
-    String? check = '',
-  }) async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'getBillsListFiltered',
-      apiUrl:
-          'https://us-central1-development-417611.cloudfunctions.net/app/gamification-bill/filtered',
-      callType: ApiCallType.GET,
-      headers: {
-        'Authorization': 'Bearer $token',
-      },
-      params: {
-        'company': company,
-        'transactionId': transactionId,
-        'receiptNumber': receiptNumber,
-        'isMarked': isMarked,
-        'status': status,
-        'companyId': companyId,
-        'startDate': startDate,
-        'endDate': endDate,
-        'check': check,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
-class GetCompanyListCall {
-  static Future<ApiCallResponse> call({
-    String? companyName = '',
-    String? profileId = '',
-    String? startDate = '',
-    String? endDate = '',
-    String? token = '',
-    String? check = '',
-  }) async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'getCompanyList',
-      apiUrl:
-          'https://us-central1-development-417611.cloudfunctions.net/app/company/list',
-      callType: ApiCallType.GET,
-      headers: {
-        'Authorization': 'Bearer $token',
-      },
-      params: {
-        'companyName': companyName,
-        'profileId': profileId,
-        'startDate': startDate,
-        'endDate': endDate,
-        'check': check,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
 class GetPaginatedCompanyListCall {
   static Future<ApiCallResponse> call({
     String? companyName = '',
@@ -151,7 +37,7 @@ class GetPaginatedCompanyListCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
-      cache: false,
+      cache: true,
       alwaysAllowBody: false,
     );
   }

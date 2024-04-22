@@ -138,7 +138,6 @@ class _CheckboxModalWidgetState extends State<CheckboxModalWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       Navigator.pop(context);
-                      FFAppState().isCompanyFiltered = true;
                     },
                     text: 'Cancel',
                     options: FFButtonOptions(
@@ -165,9 +164,6 @@ class _CheckboxModalWidgetState extends State<CheckboxModalWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       var shouldSetState = false;
-                      setState(() {
-                        FFAppState().isCompanyFiltered = false;
-                      });
                       _model.apiResult4ot = await UpdateBillCall.call(
                         token: currentJwtToken,
                         billId: widget.rowId,

@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -111,7 +112,7 @@ class _CompaniesTableWidgetState extends State<CompaniesTableWidget> {
                                 label: DefaultTextStyle.merge(
                                   softWrap: true,
                                   child: Text(
-                                    'Total receipts count',
+                                    'Created time',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
@@ -275,7 +276,14 @@ class _CompaniesTableWidgetState extends State<CompaniesTableWidget> {
                                           alignment:
                                               const AlignmentDirectional(0.0, 0.0),
                                           child: Text(
-                                            'Edit Column 3',
+                                            valueOrDefault<String>(
+                                              functions.formatDateToString(
+                                                  getJsonField(
+                                                companyItem,
+                                                r'''$.created_time''',
+                                              ).toString()),
+                                              'no date',
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(

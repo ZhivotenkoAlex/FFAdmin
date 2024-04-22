@@ -169,7 +169,6 @@ class _InputTextModalWidgetState extends State<InputTextModalWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       Navigator.pop(context);
-                      FFAppState().isCompanyFiltered = true;
                     },
                     text: 'Cancel',
                     options: FFButtonOptions(
@@ -196,9 +195,6 @@ class _InputTextModalWidgetState extends State<InputTextModalWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       var shouldSetState = false;
-                      setState(() {
-                        FFAppState().isCompanyFiltered = false;
-                      });
                       _model.apiResult5ot = await UpdateBillCall.call(
                         token: currentJwtToken,
                         billId: widget.rowId,

@@ -231,7 +231,6 @@ class _DateInputModalWidgetState extends State<DateInputModalWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       Navigator.pop(context);
-                      FFAppState().isCompanyFiltered = true;
                     },
                     text: 'Cancel',
                     options: FFButtonOptions(
@@ -258,9 +257,6 @@ class _DateInputModalWidgetState extends State<DateInputModalWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       var shouldSetState = false;
-                      setState(() {
-                        FFAppState().isCompanyFiltered = false;
-                      });
                       _model.apiResult86z = await UpdateBillCall.call(
                         token: currentJwtToken,
                         billId: widget.rowId,

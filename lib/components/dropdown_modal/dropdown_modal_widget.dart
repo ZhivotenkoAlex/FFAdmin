@@ -155,7 +155,6 @@ class _DropdownModalWidgetState extends State<DropdownModalWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       Navigator.pop(context);
-                      FFAppState().isCompanyFiltered = true;
                     },
                     text: 'Cancel',
                     options: FFButtonOptions(
@@ -182,9 +181,6 @@ class _DropdownModalWidgetState extends State<DropdownModalWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       var shouldSetState = false;
-                      setState(() {
-                        FFAppState().isCompanyFiltered = false;
-                      });
                       _model.apiResult6ot = await UpdateBillCall.call(
                         token: currentJwtToken,
                         billId: widget.rowId,
